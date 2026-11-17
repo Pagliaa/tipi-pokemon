@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e63946" />
+    <title>Pokédex dei tipi</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="site-shell">
+      <header class="hero">
+        <p class="eyebrow">Strumento di strategia</p>
+        <h1>Pokédex dei tipi</h1>
+        <p class="intro">Scopri debolezze, resistenze, immunità e mosse efficaci in base ai dati del tuo foglio Excel.</p>
+      </header>
+
+      <section class="panel controls" aria-labelledby="selection-title">
+        <div class="section-heading">
+          <p class="eyebrow">Selezione</p>
+          <h2 id="selection-title">Analizza una tipologia</h2>
+        </div>
+        <div class="search-row">
+          <label for="pokemon-search">Oppure cerca un Pokémon</label>
+          <div class="search-box">
+            <input id="pokemon-search" list="pokemon-list" type="search" placeholder="Es. Pikachu, Charizard, Vikavolt…" autocomplete="off" />
+            <button id="clear-pokemon" class="quiet-button" type="button">Cancella</button>
+          </div>
+          <datalist id="pokemon-list"></datalist>
+          <p id="search-feedback" class="helper" aria-live="polite"></p>
+        </div>
+        <div>
+          <p class="label">Scegli fino a due tipi difensivi</p>
+          <div id="type-picker" class="type-picker" aria-label="Tipi Pokémon"></div>
+        </div>
+      </section>
+
+      <section id="empty-state" class="empty-state panel">
+        <span class="pokeball" aria-hidden="true"></span>
+        <div>
+          <h2>Pronto per la sfida</h2>
+          <p>Seleziona uno o due tipi, oppure un Pokémon, per ottenere subito l’analisi.</p>
+        </div>
+      </section>
+
+      <section id="results" class="results" hidden aria-live="polite">
+        <div class="analysis-title">
+          <div>
+            <p class="eyebrow">Profilo difensivo</p>
+            <h2 id="profile-title">—</h2>
+          </div>
+          <div id="selected-types" class="type-pills"></div>
+        </div>
+        <div class="summary-grid">
+          <article class="metric-card danger">
+            <p>Debolezze</p>
+            <strong id="weakness-count">0</strong>
+            <span>tipi che infliggono danni aumentati</span>
+          </article>
+          <article class="metric-card safe">
+            <p>Resistenze</p>
+            <strong id="resistance-count">0</strong>
+            <span>tipi con danni ridotti</span>
+          </article>
+          <article class="metric-card immune">
+            <p>Immunità</p>
+            <strong id="immunity-count">0</strong>
+            <span>tipi senza effetto</span>
+          </article>
+        </div>
+        <div class="result-grid">
+          <article class="panel result-card">
+            <h3>Debolezze</h3>
+            <p class="card-description">Le mosse di questi tipi sono più efficaci.</p>
+            <div id="weaknesses" class="effect-list"></div>
+          </article>
+          <article class="panel result-card">
+            <h3>Resistenze</h3>
+            <p class="card-description">I danni di questi tipi vengono ridotti.</p>
+            <div id="resistances" class="effect-list"></div>
+          </article>
+          <article class="panel result-card">
+            <h3>Immunità</h3>
+            <p class="card-description">Le mosse di questi tipi non hanno effetto.</p>
+            <div id="immunities" class="effect-list"></div>
+          </article>
+        </div>
+        <article class="panel chart-panel">
+          <div class="chart-heading">
+            <div>
+              <p class="eyebrow">Tabella completa</p>
+              <h3>Efficacia delle mosse in arrivo</h3>
+            </div>
+            <p>1× = danno normale</p>
+          </div>
+          <div id="effectiveness-grid" class="effectiveness-grid"></div>
+        </article>
+      </section>
+    </main>
+    <footer>Fonte dati: Tipi.xlsm</footer>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
